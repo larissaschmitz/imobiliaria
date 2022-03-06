@@ -17,42 +17,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo   $title ?></title>
+    <title><?php echo $title ?></title>
+    <link rel="stylesheet" href="css/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="shortcut icon" href="img/favicon.ico">
 </head>
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="navbar-nav">
-                        <a class="navbar-brand" href="index.php">Consulta de Endereços</a>
-                        <a class="navbar-brand" href="cadastro.php">Cadastro de Endereços</a>
-                    </div>   
-            </nav>
-<br><br>
+
+<?php include 'navbarImobiliaria.php'?>
+
 
 <div class="container-fluid">
-        <h2> Insira seu endereço</h2>
+        <h3> Insira seu endereço</h3>
         <form method="post" action="acao.php">
             <div class="form-group col-lg-3">
                 <label> ID </label>
-                    <input readonly  type="text" name="id" id="id" value="<?php if ($acao == "editar") echo $dados['id']; else echo 0; ?>"><br>
+                    <input readonly  type="text" name="id" id="id" class="form-control" value="<?php if ($acao == "editar") echo $dados['id']; else echo 0; ?>"><br>
                 <label>Estado </label>
-                    <input name="estado" id="estado" type="text" class="form-control" value="<?php if ($acao == "editar") echo $dados['estado']; ?>" placeholder="Digite o estado"><br>
+                    <input name="estado" id="estado" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['estado']; ?>" placeholder="Digite a sigla do estado"><br>
                 <label>Cidade </label>
-                    <input name="cidade" id="cidade" type="text" class="form-control" value="<?php if ($acao == "editar") echo $dados['cidade']; ?>" placeholder="Digite seu nome"><br>
+                    <input name="cidade" id="cidade" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['cidade']; ?>" placeholder="Digite a cidade"><br>
                 <label>Bairro </label>
-                    <input name="bairro" id="bairro" type="text" class="form-control" value="<?php if ($acao == "editar") echo $dados['bairro']; ?>" placeholder="Digite seu nome"><br>
+                    <input name="bairro" id="bairro" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['bairro']; ?>" placeholder="Digite o bairro"><br>
                 <label>Rua </label>
-                    <input name="rua" id="rua" type="text" class="form-control" value="<?php if ($acao == "editar") echo $dados['rua']; ?>" placeholder="Digite seu nome"><br>
+                    <input name="rua" id="rua" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['rua']; ?>" placeholder="Digite a rua"><br>
                 <label>Número </label>
-                    <input name="numero" id="numero" type="number" class="form-control" value="<?php if ($acao == "editar") echo $dados['numero']; ?>" placeholder="Digite seu nome"><br>      
-    </div>
-                <button name="acao" value="salvar" id="acao" type="submit" class="btn btn-outline-success">
+                    <input name="numero" id="numero" type="number" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['numero']; ?>" placeholder="Digite o número"><br>      
+                    <button name="acao" value="salvar" id="acao" type="submit" class="btn btn-info">
                      Adicionar endereço
                 </button>
-                
+<br><br>
+                <a href="https://www.todamateria.com.br/siglas-estados-brasileiros/" target="_blank">Caso não saiba a sigla do estado, clique aqui</a>
+                </div>
+           
     </form>
 
     </div>

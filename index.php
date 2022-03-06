@@ -21,28 +21,37 @@
         }
     </script>
 
+
 </head>
 <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <div class="navbar-nav">
-                                <a class="navbar-brand" href="index.php">Consulta de Endereços</a>
-                                <a class="navbar-brand" href="cadastro.php">Cadastro de Endereços</a>
-                            </div>   
-                    </nav>
-        <br><br>
+    <?php include 'navbarImobiliaria.php'?>
+    
+        <div class="container-fluid">   
 
         
-        <div class="container-fluid">    
             <form method="post">
                 <fieldset>
-                <legend>Procurar Endereço</legend>
+                <h3>Procurar Endereço</h3>
+                    <div class="form-group col-lg-3">
+                <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
+                value="<?php echo $procurar;?>"> <br>
+                <button name="acao" id="acao" type="submit"  class="btn btn-info">Procurar</button>
 
-                <input type="text"   name="procurar" id="procurar" size="37" value="<?php echo $procurar;?>">
-                <input type="submit" name="acao"     id="acao">
+<br><br>
+
+        <fieldset>Ordernar e pesquisar por:<br>
+            <form method="post" action="">
+                    <input type="radio" name="busca" value="1" class="form-check-input" <?php if ($busca == "1") echo "checked" ?>> Id<br>
+                    <input type="radio" name="busca" value="2" class="form-check-input" <?php if ($busca == "2") echo "checked" ?>> Estado<br>
+                    <input type="radio" name="busca" value="3" class="form-check-input" <?php if ($busca == "3") echo "checked" ?>> Cidade<br>
+        </fieldset>
+
+        </div>
                 <br><br>
-            
-            <table class="table table-hover">
+    </form>
+
+    <table class="table table-hover">
             <tr><td><b>ID</b></td>
                 <td><b>Estado</b></td>
                 <td><b>Cidade</b></td>
@@ -53,16 +62,6 @@
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
             </tr> 
-
-            
-        <fieldset>Ordernar e pesquisar por:<br>
-            <form method="post" action="">
-                    <input type="radio" name="busca" value="1" <?php if ($busca == "1") echo "checked" ?>>Id<br>
-                    <input type="radio" name="busca" value="2" <?php if ($busca == "2") echo "checked" ?>>Estado<br>
-                    <input type="radio" name="busca" value="3" <?php if ($busca == "3") echo "checked" ?>>Cidade<br>
-        </fieldset>
-    </form>
-
 
 
     <?php
@@ -95,7 +94,7 @@
             <td><?php echo $linha['rua'];?></td>
             <td><?php echo $linha['numero'];?></td>
             <td><a href='show.php?id=<?php echo $linha['id'];?>'> <img class="icon" src="img/show.png" alt=""> </a></td>
-            <td><a href='cadastro.php?acao=editar&id=<?php echo $linha['id'];?>'><img class="icon" src="img/edit.png" alt=""></a></td>
+            <td><a href='cadastro.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>Excluir endereço</a><br>"; ?></td>
         
         </tr>
