@@ -30,9 +30,13 @@
 
 
 <div class="container-fluid">
-        <h3> Insira seu endereço</h3>
+
+<center><h2>Imobiliária Ujj-Schmitz</h2></center>
+        <hr>
+        
         <form method="post" action="acao.php">
             <div class="form-group col-lg-3">
+            <h3> Insira seu endereço</h3><hr>
                 <label> ID </label>
                     <input readonly  type="text" name="id" id="id" class="form-control" value="<?php if ($acao == "editar") echo $dados['id']; else echo 0; ?>"><br>
                 <label>Estado </label>

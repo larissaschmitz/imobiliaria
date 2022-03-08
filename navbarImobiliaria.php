@@ -21,12 +21,18 @@ body {
 h3{
     font-family: 'EB Garamond', serif;
 }
+
+h2{
+    font-family: 'EB Garamond', serif;
+    font-size: 50px;
+}
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
+  <a class="navbar-brand" href="#">Imobiliária Ujj-Schmitz</a>
     <div class="navbar-header">
       <a class="navbar-brand" href="index.php">Consulta de Endereços</a>
       <a class="navbar-brand" href="cadastro.php">Cadastro de Endereços</a>

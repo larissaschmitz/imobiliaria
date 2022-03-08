@@ -18,7 +18,7 @@
 
         <nav class="navbar navbar-dark bg-dark">>
             <div class="navbar-nav">
-                <a class="navbar-brand" href="index.php">Voltar para página de consultas de Endereços</a>
+                <a class="navbar-brand" href="index.php"><img class="icon" src="img/seta-direita.png" alt="" width="50" height="50"></a>
             </div>   
         </nav>
         <br>
