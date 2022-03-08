@@ -34,7 +34,7 @@
             <form method="post">
                 <fieldset>
                     <div class="form-group col-lg-3">
-                    <h3>Procurar Endereço</h3>
+                    <h3>Procurar Usuário</h3>
                     <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
                 value="<?php echo $procurar;?>"> <br>
                 <button name="acao" id="acao" type="submit"  class="btn btn-info">Procurar</button>
@@ -44,8 +44,8 @@
         <fieldset>Ordernar e pesquisar por:<br>
             <form method="post" action="">
                     <input type="radio" name="busca" value="1" class="form-check-input" <?php if ($busca == "1") echo "checked" ?>> Id<br>
-                    <input type="radio" name="busca" value="2" class="form-check-input" <?php if ($busca == "2") echo "checked" ?>> Estado<br>
-                    <input type="radio" name="busca" value="3" class="form-check-input" <?php if ($busca == "3") echo "checked" ?>> Cidade<br>
+                    <input type="radio" name="busca" value="2" class="form-check-input" <?php if ($busca == "2") echo "checked" ?>> Nome<br>
+                    <input type="radio" name="busca" value="3" class="form-check-input" <?php if ($busca == "3") echo "checked" ?>> Email<br>
         </fieldset>
 
         </div>
@@ -54,12 +54,11 @@
 
     <table class="table table-hover">
             <tr><td><b>ID</b></td>
+                <td><b>Nome</b></td>
+                <td><b>Data de Nascimento</b></td>
+                <td><b>Email</b></td>
+                <td><b>Senha</td></b>
                 <td><b>Estado</b></td>
-                <td><b>Cidade</b></td>
-                <td><b>Bairro</b></td>
-                <td><b>Rua</td></b>
-                <td><b>Número</b></td>
-                <td><b>Detalhes</b></td>
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
             </tr> 
@@ -69,19 +68,19 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM endereco 
+        $consulta = $pdo->query("SELECT * FROM locatario 
                                 WHERE id LIKE '$procurar%' 
                                 ORDER BY id");}
 
         else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM endereco 
-                            WHERE estado LIKE '$procurar%' 
-                            ORDER BY estado");}
+        $consulta = $pdo->query("SELECT * FROM locatario 
+                            WHERE nome LIKE '$procurar%' 
+                            ORDER BY nome");}
 
         else if($busca == 3){
-        $consulta = $pdo->query("SELECT * FROM endereco 
-                                WHERE cidade LIKE '$procurar%' 
-                                ORDER BY cidade");}
+        $consulta = $pdo->query("SELECT * FROM locatario 
+                                WHERE email LIKE '$procurar%' 
+                                ORDER BY email");}
 
 
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   
@@ -89,14 +88,13 @@
 
         ?>
         <tr><td><?php echo $linha['id'];?></td>
-            <td><?php echo $linha['estado'];?></td>
-            <td><?php echo $linha['cidade'];?></td>
-            <td><?php echo $linha['bairro'];?></td>
-            <td><?php echo $linha['rua'];?></td>
-            <td><?php echo $linha['numero'];?></td>
-            <td><a href='show.php?id=<?php echo $linha['id'];?>'> <img class="icon" src="img/show.png" alt=""> </a></td>
-            <td><a href='cadastro.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>Excluir endereço</a><br>"; ?></td>
+            <td><?php echo $linha['nome'];?></td>
+            <td><?php echo $linha['dataNasc'];?></td>
+            <td><?php echo $linha['email'];?></td>
+            <td><?php echo $linha['senha'];?></td>
+            <td><?php echo $linha['endereco_id'];?></td>
+            <td><a href='cadastroLocatario.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocatario.php?acao=excluir&id={$linha['id']}')>Excluir endereço</a><br>"; ?></td>
         
         </tr>
     <?php } ?>       

@@ -29,11 +29,10 @@
 <?php include 'navbarImobiliaria.php'?>
 
 
-<div class="container-fluid">
+<div cass="container-fluid">
 
-<center><h2>Imobiliária Ujj-Schmitz</h2></center>
-        <hr>
-        
+        <center><h2>Imobiliária Ujj-Schmitz</h2></center><hr>
+
         <form method="post" action="acao.php">
             <div class="form-group col-lg-3">
             <h3> Insira seu endereço</h3><hr>
@@ -53,7 +52,8 @@
                      Adicionar endereço
                 </button>
 <br><br>
-                <a href="https://www.todamateria.com.br/siglas-estados-brasileiros/" target="_blank">Caso não saiba a sigla do estado, clique aqui</a>
+
+<a href="https://www.todamateria.com.br/siglas-estados-brasileiros/" target="_blank">Caso não saiba a sigla do estado, clique aqui</a>
                 </div>
            
     </form>

@@ -36,6 +36,9 @@ h2{
     <div class="navbar-header">
       <a class="navbar-brand" href="index.php">Consulta de Endereços</a>
       <a class="navbar-brand" href="cadastro.php">Cadastro de Endereços</a>
+      
+      <a class="navbar-brand" href="indexLocatario.php">Consulta Locatario</a>
+      <a class="navbar-brand" href="cadastroLocatario.php">Cadastro de Locatario</a>
     </div>
 </nav>
 
