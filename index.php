@@ -32,9 +32,9 @@
         
             <form method="post">
                 <fieldset>
-                <h3>Procurar Endereço</h3>
                     <div class="form-group col-lg-3">
-                <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
+                    <h3>Procurar Endereço</h3>
+                    <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
                 value="<?php echo $procurar;?>"> <br>
                 <button name="acao" id="acao" type="submit"  class="btn btn-info">Procurar</button>
 
