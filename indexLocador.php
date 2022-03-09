@@ -2,7 +2,7 @@
 <?php 
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
-    $title = "Consulta de Locatarios";
+    $title = "Consulta de Locadores";
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
    $busca = isset($_POST['busca']) ? $_POST['busca'] : 1;
 ?>
@@ -34,7 +34,7 @@
             <form method="post">
                 <fieldset>
                     <div class="form-group col-lg-3">
-                    <h3>Procurar Usuário</h3>
+                    <h3>Procurar Locador</h3>
                     <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
                 value="<?php echo $procurar;?>"> <br>
                 <button name="acao" id="acao" type="submit"  class="btn btn-info">Procurar</button>
@@ -45,7 +45,6 @@
             <form method="post" action="">
                     <input type="radio" name="busca" value="1" class="form-check-input" <?php if ($busca == "1") echo "checked" ?>> Id<br>
                     <input type="radio" name="busca" value="2" class="form-check-input" <?php if ($busca == "2") echo "checked" ?>> Nome<br>
-                    <input type="radio" name="busca" value="3" class="form-check-input" <?php if ($busca == "3") echo "checked" ?>> Email<br>
         </fieldset>
 
         </div>
@@ -59,7 +58,7 @@
                 <td><b>Idade</b></td>
                 <td><b>Email</b></td>
                 <td><b>Senha</td></b>
-                <td><b>Estado</b></td>
+                <td><b>Quantidade de Imóveis</td></b>
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
             </tr> 
@@ -69,27 +68,23 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM locatario 
+        $consulta = $pdo->query("SELECT * FROM locador 
                                 WHERE id LIKE '$procurar%' 
                                 ORDER BY id");}
 
         else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM locatario 
+        $consulta = $pdo->query("SELECT * FROM locador 
                             WHERE nome LIKE '$procurar%' 
                             ORDER BY nome");}
 
-        else if($busca == 3){
-        $consulta = $pdo->query("SELECT * FROM locatario 
-                                WHERE email LIKE '$procurar%' 
-                                ORDER BY email");}
 
+    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {  
+        
+            $hoje = date("Y");
+            $uso = date("Y", strtotime($linha['dataNasc']));
 
-    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   
+            $idade = $hoje - $uso;
 
-        $hoje = date("Y");
-        $uso = date("Y", strtotime($linha['dataNasc']));
-
-        $idade = $hoje - $uso;
 
 
         ?>
@@ -99,9 +94,9 @@
             <td><?php echo $idade;?></td>
             <td><?php echo $linha['email'];?></td>
             <td><?php echo $linha['senha'];?></td>
-            <td><?php echo $linha['endereco_id'];?></td>
-            <td><a href='cadastroLocatario.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocatario.php?acao=excluir&id={$linha['id']}')>Excluir Usuário</a><br>"; ?></td>
+            <td><?php echo $linha['quantImoveis'];?></td>
+            <td><a href='cadastroLocador.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocador.php?acao=excluir&id={$linha['id']}')>Excluir Locador</a><br>"; ?></td>
         
         </tr>
     <?php } ?>       

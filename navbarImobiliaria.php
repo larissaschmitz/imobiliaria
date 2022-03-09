@@ -32,13 +32,18 @@ h2{
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-  <a class="navbar-brand" href="#">Imobiliária Ujj-Schmitz</a>
     <div class="navbar-header">
       <a class="navbar-brand" href="index.php">Consulta de Endereços</a>
       <a class="navbar-brand" href="cadastro.php">Cadastro de Endereços</a>
       
       <a class="navbar-brand" href="indexLocatario.php">Consulta Locatario</a>
       <a class="navbar-brand" href="cadastroLocatario.php">Cadastro de Locatario</a>
+
+      <a class="navbar-brand" href="indexImovel.php">Consulta Imóveis</a>
+      <a class="navbar-brand" href="cadastroImovel.php">Cadastro de Imóveis</a>
+
+      <a class="navbar-brand" href="indexLocador.php">Consulta Locadores</a>
+      <a class="navbar-brand" href="cadastroLocador.php">Cadastro de Locadores</a>
     </div>
 </nav>
 

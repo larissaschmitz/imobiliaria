@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`locador` (
   `nome` VARCHAR(45) NULL,
   `dataNasc` DATE NULL,
   `email` VARCHAR(100) NULL,
-  `login` VARCHAR(45) NULL,
+  `senha` VARCHAR(45) NULL,
   `quantImoveis` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;

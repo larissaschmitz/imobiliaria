@@ -27,7 +27,7 @@
         //var_dump($dados);
         
         $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare('INSERT INTO locatario (nome, dataNasc, email, senha, endereco_id) VALUES(:nome, :dataNasc, :email, :senha, :endereco_id)');
+        $stmt = $pdo->prepare('INSERT INTO locador (nome, dataNasc, email, senha, quantImoveis) VALUES(:nome, :dataNasc, :email, :senha, :quantImoveis)');
         
          $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
          $nome = $_POST['nome'];
@@ -41,11 +41,11 @@
          $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
          $senha = $_POST['senha'];
         
-         $stmt->bindParam(':endereco_id', $endereco_id, PDO::PARAM_STR);
-         $endereco_id = $_POST['endereco_id'];
+         $stmt->bindParam(':quantImoveis', $quantImoveis, PDO::PARAM_STR);
+         $quantImoveis = $_POST['quantImoveis'];
 
         $stmt->execute();
-        header("location:indexLocatario.php");
+        header("location:indexLocador.php");
 
     }
 
@@ -53,7 +53,7 @@
     function editar($id){
         $dados = dadosForm();
         $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare('UPDATE locatario SET nome = :nome, dataNasc = :dataNasc, email = :email, senha = :senha WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE locador SET nome = :nome, dataNasc = :dataNasc, email = :email, senha = :senha, quantImoveis = :quantImoveis WHERE id = :id');
                 
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $id = $_POST['id'];
@@ -69,27 +69,29 @@
 
         $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
         $senha = $_POST['senha'];
-        
+
+        $stmt->bindParam(':quantImoveis', $quantImoveis, PDO::PARAM_STR);
+        $quantImoveis = $_POST['quantImoveis'];
 
         $stmt->execute();
-        header("location:indexLocatario.php");
+        header("location:indexLocador.php");
     }
 
 
     //Aqui ocorre a exclusão dos dados
     function excluir($id){
         $pdo = Conexao::getInstance();
-        $stmt = $pdo ->prepare('DELETE FROM locatario WHERE id = :id');
+        $stmt = $pdo ->prepare('DELETE FROM locador WHERE id = :id');
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        header('location:indexLocatario.php');
+        header('location:indexLocador.php');
     }
 
 
     // Aqui ocorre a busca de algum item no banco de dados
     function buscarDados($id){
         $pdo = Conexao::getInstance();
-        $consulta = $pdo->query("SELECT * FROM locatario WHERE id = $id");
+        $consulta = $pdo->query("SELECT * FROM locador WHERE id = $id");
         $dados = array();
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
             $dados['id'] = $linha['id'];
@@ -97,7 +99,7 @@
             $dados['dataNasc'] = $linha['dataNasc'];
             $dados['email'] = $linha['email'];
             $dados['senha'] = $linha['senha'];
-            $dados['endereco_id'] = $linha['endereco_id'];
+            $dados['quantImoveis'] = $linha['quantImoveis'];
 
         }
         //var_dump($dados);
@@ -112,7 +114,7 @@
         $dados['dataNasc'] = $linha['dataNasc'];
         $dados['email'] = $linha['email'];
         $dados['senha'] = $linha['senha'];
-        $dados['endereco_id'] = $linha['endereco_id'];
+        $dados['quantImoveis'] = $linha['quantImoveis'];
         return $dados;
 
         
