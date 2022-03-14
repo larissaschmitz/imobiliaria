@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    include_once "acaoLocador.php";
+    include_once "acaoImovel_locador.php";
     $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     $dados;
     if ($acao == 'editar'){
@@ -9,7 +9,7 @@
     if ($id > 0)
         $dados = buscarDados($id);
 }
-    $title = "Cadastro de Imóveis";
+    $title = "Cadastro de imóvel e locador";
 //var_dump($dados);
 ?>
 <html lang="pt-br">
@@ -33,24 +33,40 @@
 
         <center><h2>Imobiliária Ujj-Schmitz</h2></center><hr>
 
-        <form method="post" action="acaoLocador.php">
+        <form method="post" action="acaoImovel_locador.php">
             <div class="form-group col-lg-3">
-            <h3> Insira os dados do locador</h3><hr>
+            <h3> Insira o imóvel e o locador</h3><hr>
             <label> ID </label>
                     <input readonly  type="text" name="id" id="id" class="form-control" value="<?php if ($acao == "editar") echo $dados['id']; else echo 0; ?>"><br>
-                <label>Nome Completo </label>
-                    <input name="nome" id="nome" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['nome']; ?>" placeholder="Digite seu nome"><br>
-                <label>Data de Nascimento </label>
-                    <input name="dataNasc" id="dataNasc" type="date" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['dataNasc']; ?>" placeholder="Digite a data de nascimento"><br>
-                <label>Email </label>
-                    <input name="email" id="email" type="email" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['email']; ?>" placeholder="Digite seu email"><br>
-                <label>Senha </label>
-                    <input name="senha" id="senha" type="password" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['senha']; ?>" placeholder="Digite a senha"><br>
-                <label> Quantidade de Imóveis</label>
-                <input name="quantImoveis" id="quantImoveis" type="number" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['quantImoveis']; ?>" placeholder="Digite o número de imóveis"><br>
+                
+            <label> Insira o Imóvel </label>
+                <select name="imovel_id" id="imovel_id">
+                <?php
+                $pdo = Conexao::getInstance(); 
+                
+                $consulta = $pdo->query("SELECT id, tipo FROM imovel");
+
+                while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
+
+                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") echo $dados['imovel_id']; ?> <?php echo $linha['tipo'];?></option> 
+            <?php } ?>
+    </select> 
+<br> <label> Insira o locador </label>
+                <select name="locador_id" id="locador_id">
+                <?php
+                $pdo = Conexao::getInstance(); 
+                
+                $consulta = $pdo->query("SELECT id, nome FROM locador");
+
+                while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
+
+                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") echo $dados['locador_id']; ?> <?php echo $linha['nome'];?></option> 
+            <?php } ?>
+    </select> 
+
 <br><br>
     <button name="acao" value="salvar" id="acao" type="submit" class="btn btn-info">
-                     Adicionar locador
+                     Adicionar endereço
                 </button>
 <br><br>
 

@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`endereco` (
 ENGINE = InnoDB;
 
 
+
+
 -- -----------------------------------------------------
 -- Table `imobiliaria`.`locatario`
 -- -----------------------------------------------------
@@ -70,14 +72,13 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`locacao` (
   `dataSaida` DATE NULL,
   `valor` VARCHAR(45) NULL,
   `locatario_id` INT NOT NULL,
-  `locatario_endereco_id` INT NOT NULL,
   `imovel_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_locacao_locatario1_idx` (`locatario_id` ASC, `locatario_endereco_id` ASC) VISIBLE,
+  INDEX `fk_locacao_locatario1_idx` (`locatario_id` ASC) VISIBLE,
   INDEX `fk_locacao_imovel1_idx` (`imovel_id` ASC) VISIBLE,
   CONSTRAINT `fk_locacao_locatario1`
-    FOREIGN KEY (`locatario_id` , `locatario_endereco_id`)
-    REFERENCES `imobiliaria`.`locatario` (`id` , `endereco_id`)
+    FOREIGN KEY (`locatario_id`)
+    REFERENCES `imobiliaria`.`locatario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_locacao_imovel1`
@@ -105,6 +106,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `imobiliaria`.`imovel_has_locador`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `imobiliaria`.`imovel_has_locador` (
   `imovel_id` INT NOT NULL,
   `locador_id` INT NOT NULL,
@@ -113,15 +115,12 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`imovel_has_locador` (
   INDEX `fk_imovel_has_locador_imovel1_idx` (`imovel_id` ASC) VISIBLE,
   CONSTRAINT `fk_imovel_has_locador_imovel1`
     FOREIGN KEY (`imovel_id`)
-    REFERENCES `imobiliaria`.`imovel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `imobiliaria`.`imovel` (`id`),
   CONSTRAINT `fk_imovel_has_locador_locador1`
     FOREIGN KEY (`locador_id`)
-    REFERENCES `imobiliaria`.`locador` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `imobiliaria`.`locador` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

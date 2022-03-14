@@ -41,9 +41,16 @@ h2{
 
       <a class="navbar-brand" href="indexImovel.php">Consulta Imóveis</a>
       <a class="navbar-brand" href="cadastroImovel.php">Cadastro de Imóveis</a>
+      <br>
+      <a class="navbar-brand" href="indexLocacao.php">Consulta Locação</a>
+      <a class="navbar-brand" href="cadastroLocacao.php">Cadastro de Locação</a>
 
       <a class="navbar-brand" href="indexLocador.php">Consulta Locadores</a>
       <a class="navbar-brand" href="cadastroLocador.php">Cadastro de Locadores</a>
+
+      <a class="navbar-brand" href="indexImovel_locador.php">Consulta Imoveis e locadores</a>
+      <a class="navbar-brand" href="cadastroImovel_locador.php">Cadastro de Imoveis e locadores</a>
+
     </div>
 </nav>
 

@@ -2,7 +2,7 @@
 <?php 
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
-    $title = "Consulta de Locatarios";
+    $title = "Consulta de Locações";
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
    $busca = isset($_POST['busca']) ? $_POST['busca'] : 1;
 ?>
@@ -34,7 +34,7 @@
             <form method="post">
                 <fieldset>
                     <div class="form-group col-lg-3">
-                    <h3>Procurar Usuário</h3>
+                    <h3>Procurar Locação</h3>
                     <input type="text" name="procurar" id="procurar" size="50" class="form-control" placeholder="Insira o que deseja consultar"
                 value="<?php echo $procurar;?>"> <br>
                 <button name="acao" id="acao" type="submit"  class="btn btn-info">Procurar</button>
@@ -44,8 +44,6 @@
         <fieldset>Ordernar e pesquisar por:<br>
             <form method="post" action="">
                     <input type="radio" name="busca" value="1" class="form-check-input" <?php if ($busca == "1") echo "checked" ?>> Id<br>
-                    <input type="radio" name="busca" value="2" class="form-check-input" <?php if ($busca == "2") echo "checked" ?>> Nome<br>
-                    <input type="radio" name="busca" value="3" class="form-check-input" <?php if ($busca == "3") echo "checked" ?>> Email<br>
         </fieldset>
 
         </div>
@@ -54,12 +52,11 @@
 
     <table class="table table-hover">
             <tr><td><b>ID</b></td>
-                <td><b>Nome</b></td>
-                <td><b>Data de Nascimento</b></td>
-                <td><b>Idade</b></td>
-                <td><b>Email</b></td>
-                <td><b>Senha</td></b>
-                <td><b>Estado</b></td>
+                <td><b>Data de entrada</b></td>
+                <td><b>Data de Saída</b></td>
+                <td><b>Valor</b></td>
+                <td><b>Nome do Locatario</td></b>
+                <td><b>Tipo de imóvel</b></td>
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
             </tr> 
@@ -69,42 +66,25 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM locatario
+        $consulta = $pdo->query("SELECT * FROM locacao 
                                 WHERE id LIKE '$procurar%' 
                                 ORDER BY id");}
 
-        else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM locatario 
-                            WHERE nome LIKE '$procurar%' 
-                            ORDER BY nome");}
-
-        else if($busca == 3){
-        $consulta = $pdo->query("SELECT * FROM locatario 
-                                WHERE email LIKE '$procurar%' 
-                                ORDER BY email");}
-
-
+        
 
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   
 
-        $hoje = date("Y"); 
-        $uso = date("Y", strtotime($linha['dataNasc']));
-
-        $idade = $hoje - $uso;
-
-        
 
         ?>
         <tr><td><?php echo $linha['id'];?></td>
-            <td><?php echo $linha['nome'];?></td>
-            <td><?php echo date("d/m/Y",strtotime($linha['dataNasc']));?></td>
-            <td><?php echo $idade;?></td>
-            <td><?php echo $linha['email'];?></td>
-            <td><?php echo $linha['senha'];?></td>
-            <td><?php echo $linha['endereco_id'];?></td>
-            <td><a href='cadastroLocatario.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocatario.php?acao=excluir&id={$linha['id']}')>Excluir Usuário</a><br>"; ?></td>
-        
+        <td><?php echo date("d/m/Y",strtotime($linha['dataEntrada']));?></td>
+        <td><?php echo date("d/m/Y",strtotime($linha['dataSaida']));?></td>
+            <td><?php echo $linha['valor'];?></td>
+            <td><?php echo $linha['locatario_id'];?></td>
+            <td><?php echo $linha['imovel_id'];?></td>
+            <td><a href='cadastroLocacao.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocacao.php?acao=excluir&id={$linha['id']}')>Excluir endereço</a><br>"; ?></td>
+         
         </tr>
     <?php } ?>       
     </table>

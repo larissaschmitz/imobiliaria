@@ -45,7 +45,7 @@
                 <label>Numero de Banheiros </label>
                     <input name="banheiros" id="banheiros" type="number" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['banheiros']; ?>" placeholder="Digite o número de banheiros"><br>
                 
-                    <label>Endereço </label>
+                    <label>Estado </label>
                     <input name="endereco" id="endereco" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['endereco']; ?>" placeholder="Digite seu estado"><br>
                 
 <br><br>

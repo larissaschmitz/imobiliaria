@@ -53,7 +53,7 @@
     function editar($id){
         $dados = dadosForm();
         $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare('UPDATE locatario SET nome = :nome, dataNasc = :dataNasc, email = :email, senha = :senha WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE locatario SET nome = :nome, dataNasc = :dataNasc, email = :email, senha = :senha, endereco_id = :endereco_id WHERE id = :id');
                 
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $id = $_POST['id'];
@@ -70,8 +70,11 @@
         $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
         $senha = $_POST['senha'];
         
+        $stmt->bindParam(':endereco_id', $endereco_id, PDO::PARAM_STR);
+        $endereco_id = $_POST['endereco_id'];
+        
 
-        $stmt->execute();
+        $stmt->execute(); 
         header("location:indexLocatario.php");
     }
 

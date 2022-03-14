@@ -56,7 +56,7 @@
                 <td><b>Tipo</b></td>
                 <td><b>Quartos</b></td>
                 <td><b>Banheiros</b></td>
-                <td><b>Endereço</td></b>
+                <td><b>Estado</td></b>
                 <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
             </tr> 
