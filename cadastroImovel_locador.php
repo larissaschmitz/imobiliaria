@@ -42,7 +42,7 @@
             <label> ID </label>
                     <input readonly  type="text" name="id" id="id" class="form-control" value="<?php if ($acao == "editar") echo $dados['id']; else echo 0; ?>"><br>
                 
-            <label> Insira o Imóvel </label>
+            <label> Insira o Imóvel </label><br>
                 <select name="imovel_id" id="imovel_id">
                 <?php
                 $pdo = Conexao::getInstance(); 
@@ -55,8 +55,8 @@
 
 
             <?php } ?>
-    </select> 
-<br> <label> Insira o locador </label>
+    </select> <br>
+<br> <label> Insira o locador </label><br>
                 <select name="locador_id" id="locador_id">
                 <?php
                 $pdo = Conexao::getInstance(); 

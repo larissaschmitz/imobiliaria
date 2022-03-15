@@ -48,7 +48,7 @@
                     <input name="senha" id="senha" type="password" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['senha']; ?>" placeholder="Digite a senha"><br>
                 <label> Quantidade de Imóveis</label>
                 <input name="quantImoveis" id="quantImoveis" type="number" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['quantImoveis']; ?>" placeholder="Digite o número de imóveis"><br>
-<br><br>
+<br>
     <button name="acao" value="salvar" id="acao" type="submit" class="btn btn-info">
                      Adicionar locador
                 </button>
