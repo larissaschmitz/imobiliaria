@@ -2,15 +2,18 @@
 
 <?php
     include_once "acaoImovel_locador.php";
+    $contexto = isset($_POST['contexto']) ? $_POST['contexto'] : "";
     $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     $dados;
     if ($acao == 'editar'){
         $id = isset($_GET['id']) ? $_GET['id'] : "";
     if ($id > 0)
         $dados = buscarDados($id);
+
+        
 }
     $title = "Cadastro de imóvel e locador";
-//var_dump($dados);
+
 ?>
 <html lang="pt-br">
 <head>
@@ -48,7 +51,9 @@
 
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
 
-                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") echo $dados['imovel_id']; ?> <?php echo $linha['tipo'];?></option> 
+                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") $dados['imovel_id']; ?> <?php echo $linha['tipo'];?></option> 
+
+
             <?php } ?>
     </select> 
 <br> <label> Insira o locador </label>
@@ -60,7 +65,7 @@
 
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
 
-                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") echo $dados['locador_id']; ?> <?php echo $linha['nome'];?></option> 
+                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") $dados['locador_id']; ?> <?php echo $linha['nome'];?></option> 
             <?php } ?>
     </select> 
 

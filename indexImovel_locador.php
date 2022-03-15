@@ -63,23 +63,27 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM imovel_has_locador
-                                WHERE imovel_id LIKE '$procurar%' 
+        $consulta = $pdo->query("SELECT * FROM imovel_has_locador, imovel, locador
+                                WHERE imovel_id LIKE '$procurar%'
+                                AND imovel_has_locador.imovel_id = imovel.id
+                                AND imovel_has_locador.locador_id = locador.id
                                 ORDER BY imovel_id");}
 
         else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM imovel_has_locador 
-                            WHERE locador_id LIKE '$procurar%' 
+        $consulta = $pdo->query("SELECT * FROM imovel_has_locador, imovel, locador
+                            WHERE locador_id LIKE '$procurar%'
+                            AND imovel_has_locador.imovel_id = imovel.id
+                            AND imovel_has_locador.locador_id = locador.id 
                             ORDER BY locador_id");}
 
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   
 
        
         ?>
-        <tr><td><?php echo $linha['imovel_id'];?></td>
-            <td><?php echo $linha['locador_id'];?></td>
-            <td><a href='cadastroLocatario.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acaoLocatario.php?acao=excluir&id={$linha['id']}')>Excluir Usuário</a><br>"; ?></td>
+        <tr><td><?php echo $linha['tipo'];?></td>
+            <td><?php echo $linha['nome'];?></td>
+            <td><a href='cadastroImovel_locador.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoImovel_locador.php?acao=excluir&id={$linha['id']}')>Excluir Relação</a><br>"; ?></td>
         
         </tr>
     <?php } ?>       
