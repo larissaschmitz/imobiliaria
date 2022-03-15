@@ -60,7 +60,7 @@
 
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
 
-                <option value="<?php echo $linha['id'];?>">  <?php if ($acao == "editar")  $dados['endereco_id']; ?>    <?php echo $linha['estado'];?></option> 
+                <option value="<?php echo $linha['id'];?>">  <?php if ($acao == "editar")  $dados['endereco_id']; ?> <?php echo $linha['estado'];?></option> 
             <?php } ?>
          
     </select>

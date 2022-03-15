@@ -48,8 +48,8 @@
                     <input name="valor" id="valor" type="text" required="true" class="form-control" value="<?php if ($acao == "editar") echo $dados['valor']; ?>" placeholder="Digite o tipo de imóvel"><br>
                 
                 
-                    <label> Insira o locatario </label>
-                <select name="locatario_id" id="locatario_id">
+                    <label> Insira o locatario </label><br>
+                <select name="locatario_id" id="locatario_id"> 
                 <?php
                 $pdo = Conexao::getInstance(); 
                 
@@ -58,10 +58,11 @@
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
 
                 <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") $dados['locatario_id']; ?> <?php echo $linha['nome'];?></option> 
-            <?php } ?>
+            
+                <?php } ?>  
     </select> 
-
-    <label> Insira o imóvel </label>
+    <br><br>
+    <label> Insira o imóvel </label><br>
                 <select name="imovel_id" id="imovel_id">
                 <?php
                 $pdo = Conexao::getInstance(); 
@@ -70,7 +71,7 @@
 
                 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   ?>
 
-                <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") $dados['imovel_id']; ?>  <?php echo $linha['tipo'];?></option> 
+               <option value="<?php echo $linha['id'];?>"> <?php if ($acao == "editar") $dados['imovel_id']; ?>  <?php echo $linha['tipo'];?></option> 
             <?php } ?>
     </select>
 
