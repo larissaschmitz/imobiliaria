@@ -63,14 +63,14 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM imovel_has_locador, imovel, locador
+        $consulta = $pdo->query("SELECT * FROM imovel, locador, imovel_has_locador
                                 WHERE imovel_id LIKE '$procurar%'
                                 AND imovel_has_locador.imovel_id = imovel.id
                                 AND imovel_has_locador.locador_id = locador.id
                                 ORDER BY imovel_id");}
 
         else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM imovel_has_locador, imovel, locador
+        $consulta = $pdo->query("SELECT * FROM imovel, locador, imovel_has_locador
                             WHERE locador_id LIKE '$procurar%'
                             AND imovel_has_locador.imovel_id = imovel.id
                             AND imovel_has_locador.locador_id = locador.id 

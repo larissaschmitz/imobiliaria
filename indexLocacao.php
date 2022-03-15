@@ -66,9 +66,11 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM locacao
-                                WHERE id LIKE '$procurar%' 
-                                ORDER BY id");}
+        $consulta = $pdo->query("SELECT * FROM imovel, locatario, locacao
+                                WHERE locacao.id LIKE '$procurar%' 
+                                AND locacao.locatario_id = locatario.id
+                                AND locacao.imovel_id = imovel.id
+                                ORDER BY locacao.id");}
 
         
 
@@ -80,8 +82,8 @@
         <td><?php echo date("d/m/Y",strtotime($linha['dataEntrada']));?></td>
         <td><?php echo date("d/m/Y",strtotime($linha['dataSaida']));?></td>
             <td><?php echo $linha['valor'];?></td>
-            <td><?php echo $linha['locatario_id'];?></td>
-            <td><?php echo $linha['imovel_id'];?></td>
+            <td><?php echo $linha['nome'];?></td>
+            <td><?php echo $linha['tipo'];?></td>
             <td><a href='cadastroLocacao.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acaoLocacao.php?acao=excluir&id={$linha['id']}')>Excluir locação</a><br>"; ?></td>
          

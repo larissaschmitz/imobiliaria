@@ -69,20 +69,23 @@
         $pdo = Conexao::getInstance(); 
 
         if($busca == 1){
-        $consulta = $pdo->query("SELECT * FROM locatario
-                                WHERE id LIKE '$procurar%' 
-                                ORDER BY id");}
+        $consulta = $pdo->query("SELECT * FROM endereco, locatario
+                                WHERE locatario.id LIKE '$procurar%' 
+                                AND locatario.endereco_id = endereco.id
+                                ORDER BY locatario.id");}
+
 
         else if($busca == 2){
-        $consulta = $pdo->query("SELECT * FROM locatario 
-                            WHERE nome LIKE '$procurar%' 
-                            ORDER BY nome");}
+        $consulta = $pdo->query("SELECT * FROM endereco, locatario
+                                WHERE locatario.nome LIKE '$procurar%' 
+                                AND locatario.endereco_id = endereco.id
+                                ORDER BY locatario.nome");}
 
         else if($busca == 3){
-        $consulta = $pdo->query("SELECT * FROM locatario 
-                                WHERE email LIKE '$procurar%' 
-                                ORDER BY email");}
-
+        $consulta = $pdo->query("SELECT * FROM endereco, locatario
+                                WHERE locatario.email LIKE '$procurar%' 
+                                AND locatario.endereco_id = endereco.id
+                                ORDER BY locatario.email");}
 
 
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {   
@@ -101,7 +104,7 @@
             <td><?php echo $idade;?></td>
             <td><?php echo $linha['email'];?></td>
             <td><?php echo $linha['senha'];?></td>
-            <td><?php echo $linha['endereco_id'];?></td>
+            <td><?php echo $linha['estado'];?></td>
             <td><a href='cadastroLocatario.php?acao=editar&id=<?php echo $linha['id'];?>'> <img class="center" src="img/edit.png" alt=""></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acaoLocatario.php?acao=excluir&id={$linha['id']}')>Excluir Usuário</a><br>"; ?></td>
         
